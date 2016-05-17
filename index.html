@@ -41,12 +41,50 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
+				<section data-background="img/8317241259_e0cde4b40a_b.jpg" data-state="dim">
 					<h1>Furby: "Go" Away!</h1>
-					<h3>Jenkins Furby Ravings via Gobot and Golang</h3>
+					<h3>Jenkins Furby Ravings via Gobot and Go</h3>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+
 					<p>
-						<small>Furby zoology by <a href="http://www.nerderypublic.com">Tina Coleman</a> / <a href="http://twitter.com/colemanserious">@colemanserious</a></small>
+						Furby zoology by <a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
+						<a href="mailto:tina@haydensoft.com">tina@haydensoft.com</a>
 					</p>
+					<aside class="notes">
+
+				Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/whatleydude">@whatleydude</a> 
+					</aside>
+				
+				</section>
+
+				<section>	
+				<h2>History of Furby</h2>
+				
+				<ol>
+					<li>1998: Furby enters the market
+					<li>2005: Emoto-tronic Furby, "Furby Island" TV show
+					<li>2012: Resurge of the Furby: now with iOS and Android Apps
+					<li>2013: 2 Coleman daughters receive Furbies
+				    <li>2014: "Arduino + Furby Broken Build Notification - Oh, You'll Want to Fix It Quick!"
+					<li>2015: Chewbacca Furby	
+					<li>tomorrow... a Furby SkyNet 
+				</ol>	
+
+						<aside class="notes">
+						Dave Hampton and Caleb Chung - nine months to create the Furby before it appears at the American International Toy Fair in 1998 - citation: http://furbytoyshop.com/furby-history, https://en.wikipedia.org/wiki/Furby
+
+						Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/donhomer/">Michael Bentley</a>
+						</aside>
+				</section>
+
+				<section data-background="img/8322201790_c303417e89_z.jpg">
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+
+				<h1>Feel my Furby wrath</h1>
 				</section>
 
 				<section>
@@ -55,361 +93,343 @@
 					<span class="fragment">Furby for broken code...  <em> Why Not?</em></span>
 					</p>
 					<p><span class="fragment">Raspberry Pi...  <em>Because I had one</em></span></p>
-					<span class="fragment"><p>Gobot...  their logo's cool!</p><img src="http://gobot.io/images/elements/gopher.png"></span>
+					<span class="fragment"><p>Gobot...  <em>their logo's cool!</em></p><img src="img/gopher.png"></span>
+					<br><span class="fragment">OK, and so is Golang</span>
 					
 						<aside class="notes">
 						Other build indicators: emails, slack messages, glowing spheres, Nerf guns...  	
 						Raspberry Pi - already had an Arduino which I'd done some experimenting with...  always a good idea to try something new, particularly when a conference topic hangs in the balance
 
 						Gobot - well, cool logo, plus I'd gotten to do some Golang at work and wanted to poke around a bit more...  
+
+						Gobot logo: http://gobot.io/images/elements/gopher.png
 						</aside>
 				</section>
-				<section data-background="img/8317241259_e0cde4b40a_b.jpg" data-state="transparent-image">	
-				<h2>History of Furby</h2>
-				<ol>
-					<li>1998: Furby enters the market
-					<li>2005: Emoto-tronic Furby, "Furby Island" TV show
-					<li>2012: Resurge of the Furby: now with iOS and Android Apps
-					<li>2013: 2 Coleman daughters receive Furbies
-				      	<li>2014: "Arduino + Furby Broken Build Notification - Oh, You'll Want to Fix It Quick!"
-					<li>2015: Chewbacca Furby	
-					<li>today... a Furby SkyNet 
-				</ol>	
-				<p style="text-align:left;">
-				<small>Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/whatleydude">@whatleydude</a> </small>
-				</p>
-						<aside class="notes">
-						Dave Hampton and Caleb Chung - nine months to create the Furby before it appears at the American International Toy Fair in 1998 - citation: http://furbytoyshop.com/furby-history, https://en.wikipedia.org/wiki/Furby
-						</aside>
+				<section >
+					<h2>Labor of Love</h2>
+					<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a>
+					<img src="img/9990571563_2d90ca7168_z.jpg" height="70%" />
+					
+					<aside class="notes">
+					Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/stevensnodgrass/9990571563">Stephen Snodgrass</a>
 				</section>
 
-				<section>
-					<h2>Golang</h2>
-					<p>
+				<section data-background="img/gophercolor.png"  data-state="dim shift-down" data-background-size="500px 500px" >
+					<h2>Go</h2>
 					<ul>
-						<li>Docker
-						<li>Smart coworker 
-						<li>Reputation for building smaller modules which easily tested, have clean code, ...
+						<li>Smart coworker
+						<li>Docker 
+						<li>Build smaller modules 
 						<li>Fast compile + build time
-						<li>Concurrency handling!
+						<li>Functions as first-class citizens
+						<li>Concurrency handling
+						<li>Active community
 						<li>Built in tooling
 					</ul>
-					</p>
 					
+					<p></p>
 					<h4>Enough to go see what all the fuss is about</h4>
 					<aside class="notes">
-					I assume you all know something about Jenkins, and have heard a bit about Raspberry Pi.  
-					</aside>
+					The Go gopher was designed by Renee French. (http://reneefrench.blogspot.com/)
+	     			The design is licensed under the Creative Commons 3.0 Attributions license.
+	     			Read this article for more details: https://blog.golang.org/gopher	
+	     			</aside>
 				</section>
 
-				<section>
+				<section data-background="img/gobot-home.png" data-state="shift-down" data-background-size="300px 300px">
 					<h2>Gobot</h2>
-
+					<ul>	
+						<li>Platforms:  Raspberry Pi, BeagleBone, Sphero, Arduino, ...
+						<li> Devices
+							<ul>
+								<li>GPIO
+								<li>I2C
+							</ul>
+						<li>Related projects:<br />
+						<img src="img/artoo.png" /> &nbsp; &nbsp;
+						<img src="img/cylon.png" /> 
+					</ul>
+					<aside class="notes">
+					- All use same adaptor / driver pattern
+					- There are some odd things as platforms; joysticks, keyboard, Leap motion
+					- Cylon appears to have more "connectors" than Gobot, but able to beg/borrow ideas from all projects
+					- Taking a look at the platforms, added a few more things to my Amazon WishList!
+					</aside>
 					
 				</section>
 
-
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
+					<h2>How DO you control a Furby?</h2>
+					<a href="http://dgst201.maryclark.us/hacking/silencing-furby/">Annotated Furby schematics</a>
+					<img src="img/_furby_alt_schematic.jpg" />
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						* So, Furby's not listed in the set of things that Gobot (or Artoo or Cylon) command...  
+						* Instructables to take it apart
+						* Motor mechanisms...	
+
+					Image source: http://dgst201.maryclark.us/hacking/silencing-furby/. Blog: MARY CLARK: TINKERING, HACKING, AND MAKING, post as of March 29, 2016.  Linked from http://www.kellyheatonstudio.com/reflection-loop-1
 					</aside>
 				</section>
 
 				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+					<h2>OR...</h2>
+					<img src="img/FurbyGobotPi.svg" height="80%" width="80%" />	
+					<aside class="notes">
+						github.com/iafan/Hacksby - perl project which documents / produces WAV files used to trigger furby
 				</section>
 
 				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
+					<h2>Playing a Sound</h2>
+					<pre>
+					<code data-trim>
+// PlayWav plays the filename provided.
+//  Potential errors include:
+//   - file not found
+//   - unable to play
+//
+// Note: Did see audio package in GoLang, however its part of gomobile
+//  Other alternatives exist - OpenAL, portaudio, ...  aplay seemed simplest
+func PlayWav(fileName string) (err error) {
 
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
+        if fileName == "" {
+                log.Println("Require filename for WAV file.")
+                return errors.New("Requires filename for WAV file.")
+        }
+
+        // command to play a WAV file on Raspberry Pi
+        cmd := exec.Command("aplay", fileName)
+        err = cmd.Run()
+
+        if err != nil {
+                log.Println(err)
+                return err
+        }
+
+        // Need to return to fulfill function sig, even though returning an empty
+        return
+}
+					</code>
+					</pre>
+					
+					<aside class="notes">
+					- "PlayWav" is public within the package.  See also Command and Run being public.  exec is from package os/exec, which is referred to as its "final" name
+					- Common go convention to return err (or array of errors), rather than throw an exception
+					- Not yet integrated into Gobot, but this is the basis of what we're doing... 
+					</aside>
+	
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
+					<h2>Trying it out - console app</h2>
+					<a href="https://github.com/spf13/cobra">spf13/cobra</a> - "A Commander for Modern Go CLI interactions"
+
+					
+					<pre>
+					<code>
+cobra init
+cobra add playSound
+					</code>
+					</pre>
+
+					<aside class="notes">
+					Session earlier this week on Go CLI...  if you didn't catch it, see if it's recorded
+					</aside>
 				</section>
 
 				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
+					<h2>playSound command</h2>
+
+
+Within cmd/playSound.go...
+					<pre>
+
+					<code>
+var playSoundCmd = &cobra.Command{
+        Use:   "playSound",
+        Short: "Play a sound file given as an argument.",
+        Run: func(cmd *cobra.Command, args []string) {
+
+                if len(args) == 0 {
+                        log.Println("Must provide filename")
+                        return
+                }
+                err := sounds.PlayWav(args[0])
+                if err != nil {
+                        log.Println("Unable to execute command - could not play sound.")
+                }
+        },
+}
+
+func init() {
+        RootCmd.AddCommand(playSoundCmd)
+
+}
+
+					</code>
+					</pre>
+					<aside class="notes">
+					./furby-gobot playSound resources/match2.wav
+					Work done to put Audio into an adaptor and driver for Gobot
+					</aside>
 				</section>
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+				<section>
+					<h2>Audio Driver / Adaptor</h2>
+					Receive requests to play quickly, but only play 1 at a time...<br/>
+					Don't block channel, though we might drop playing sounds
+					<pre>
+						<code>
+func (d *AudioDriver) Start() (err []error) {
+        go d.serve(d.queue)
+        return
+}
+
+// See example at https://golang.org/doc/effective_go.html#concurrency
+// Purpose: receive messages on channel, but throttle execution of playing
+func (d *AudioDriver) serve(queue chan string) {
+        for req := range queue {
+                sem <- 1
+                go func(req string) {
+                        fmt.Printf("Playing sound %v\n", req)
+                        // d.Sound is on Adaptor, which 
+                        //  calls aplay using similar logic as PlayWav
+                        d.Sound(req)
+                        <-sem
+                }(req)
+        }
+}
+
+						</code>
+					</pre>
+					<aside>
+						Audio is now being added to Gobot, based on work seen here.  This was modeled after the Audio Driver seen in Cylon.
+						"if Cylon.js is the future, than Gobot is the future's future" - Ron Evans, @deadprogram, developer at Hybrid Group, the primary maintainers of Gobot
+						There's now a feature/audio branch in Gobot, which provides support for mp3s, as well as WAV files
+					</aside>
 				</section>
 
+
+				<section>
+					<h2>Basic Gobot - Light up LED + sound</h2>
+					See cmd/ledOn.go
+					<pre>
+					<code>
+gbot := gobot.NewGobot()
+
+r := raspi.NewRaspiAdaptor("raspi")
+audioAdaptor := audio.NewAudioAdaptor("sound")
+
+// Gobot maps the pin to the GPIO pin
+led := gpio.NewLedDriver(r, "led", "33")
+
+audioDriver := audio.NewAudioDriver(audioAdaptor, "sounds", nil)
+         
+work := func() {
+	gobot.Every(5*time.Second, func() {
+	        led.Toggle()
+	        audioDriver.Sound("resources/foo.wav")
+	})
+}
+
+robot := gobot.NewRobot("furbyBot",
+    []gobot.Connection{r, audioAdaptor},
+    []gobot.Device{led, audioDriver },
+    work,
+)
+					</code>
+					</pre>
+
+					<aside class="notes">
+						No communications going on between the various components, but GoBot is controlling all of the elements...
+					</aside>
+				</section>
+
+				<section>
+				<h2>Driving via the web</h2>
+					<code>
+					api.NewAPI(gbot).Start()
+					</code>
+
+					<p>&nbsp;</p>
+					<p>Any commands on drivers are exposed, as well as events
+
+
+				</section>
+
+				<section>
+				<h2>Web driven</h2>
+					<p>Use :3000/ to interact with your robot</p>
+
+					<img src="img/Robeaux.png" />
+
+					<aside class="notes">
+						http://192.168.2.2:3000
+					</aside>
+				</section>
+
+				<section>
+				<h2>Integrating info from Jenkins into Gobot</h2>
+				Part I: Receive the info.
+				<pre>
+				<code>
+j.AddEvent(JobResult)
+
+j.AddCommand("ParseResults", func(params map[string]interface{}) 
+	interface{} {
+    var snapshot JobOutcomeSnapshot
+
+    result := ParseJobState(params)
+    if (JobOutcome{}) != result {
+        fmt.Printf("Result: %v\n", result)
+        lastOutcome, ok := jobStates[result.Name]
+        if ok {
+                fmt.Printf("Last outcome: %v\n", lastOutcome)
+        }
+
+        snapshot.Outcome = result
+        snapshot.RanAt = time.Now()
+        jobStates[result.Name] = snapshot
+        gobot.Publish(j.Event(JobResult), result)
+    }
+
+    return result
+})
+
+				</code>
+				</pre>
+				<aside class="notes">
+
+				All of the above is within my custom jenkinsconnect driver.  Modeled after MQTT...  basically, subscribing to events from Jenkins
+				if (JobOutcome{} != result) =>  Did I return a non-empty JobOutcome?  
+
+				gobot.Publish()
+				</aside>
+				</section>
+
+				<section>
+				<h2>Integrating info from Jenkins into Gobot</h2>
+				Part II: Do something with it...
+
+				</section>
+
+				<section data-background="img/manyFurbies.jpg" data-state="dim">
+				<h2>Oh Developers...</h2>
+				
+				<p>
+						<a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
+						<a href="mailto:tina@haydensoft.com">tina@haydensoft.com</a>
+				</p>
+				
+				</section>
 			</div>
 
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+
+		<!-- Required for sampler.js! -->
+       <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 
 		<script>
 
@@ -430,7 +450,8 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/reveal-sampler-master/sampler.js'}
 				]
 			});
 
