@@ -21,6 +21,20 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<style type='text/css'>
+		      .reveal #talk-tag {
+		        position:   fixed;
+		        z-index:    30;
+		        bottom:     10px;
+		        right:      150px;
+		        padding:    0.25%;
+		        max-width:  130px;
+		        outline:    none;
+		        box-shadow: none;
+		        background: transparent;
+		      }
+		 </style>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -66,7 +80,7 @@
 					<li>2005: Emoto-tronic Furby, "Furby Island" TV show
 					<li>2012: Resurge of the Furby: now with iOS and Android Apps
 					<li>2013: 2 Coleman daughters receive Furbies
-				    <li>2014: "Arduino + Furby Broken Build Notification - Oh, You'll Want to Fix It Quick!"
+				    <li>2014: OSCON session: <a href="http://conferences.oreilly.com/oscon/oscon2014/public/schedule/detail/34274">"Arduino + Furby Broken Build Notification - Oh, You'll Want to Fix It Quick!"</a>
 					<li>2015: Chewbacca Furby	
 					<li>tomorrow... a Furby SkyNet 
 				</ol>	
@@ -368,6 +382,19 @@ robot := gobot.NewRobot("furbyBot",
 				</section>
 
 				<section>
+					<h2>How does Jenkins notify us?</h2>
+					<p>
+					Job Notification, sending through JSON to a URL
+					</p>
+					<img src="img/JobNotifications.png" />
+					<aside class="notes">
+						Sending through as JSON
+						Currently sending through all events and filtering in code, but could subset to 'Job Finalized'
+						Other demo purpose magic: Fail Build plugin, which lets me control which jobs are succeeding / failing
+					</aside>
+				</section>
+
+				<section>
 				<h2>Integrating info from Jenkins into Gobot</h2>
 				Part I: Receive the info.
 				<pre>
@@ -400,9 +427,12 @@ j.AddCommand("ParseResults", func(params map[string]interface{})
 				<aside class="notes">
 
 				All of the above is within my custom jenkinsconnect driver.  Modeled after MQTT...  basically, subscribing to events from Jenkins
+
 				if (JobOutcome{} != result) =>  Did I return a non-empty JobOutcome?  
 
 				gobot.Publish()
+
+				How do I trigger this?  
 				</aside>
 				</section>
 
@@ -410,6 +440,131 @@ j.AddCommand("ParseResults", func(params map[string]interface{})
 				<h2>Integrating info from Jenkins into Gobot</h2>
 				Part II: Do something with it...
 
+<pre>
+<code>
+gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
+	jobResult := data.(jenkinsconnect.JobOutcome)
+	switch jobResult.State {
+	case jenkinsconnect.SUCCESS:
+		furby.ExecuteCommand("burp")
+	case jenkinsconnect.FAILED:
+		furby.ExecuteCommand("fart")
+	default:
+	}
+})
+</code>
+</pre>
+				</section>
+
+				<section>
+					<h2>That furby.ExecuteCommand()</h2>
+					<ul>
+					<li>FurbyDriver modeled after gpio.LedDriver
+					<li>Adds ExecuteCommand()
+					</ul>
+					<pre>
+					<code>
+// Map command name to file name for command
+//  3 digits correspond to code from Hacksby library - see Command.pm
+var commands = map[string]string{
+	"burp":    "864-burp.wav",
+	"fart":    "865-fart.wav",
+	"listen":  "820-listen.wav",
+	...
+}
+....
+func (f *FurbyDriver) ExecuteCommand(command string) (err error) {
+
+	if !f.State() {
+		f.On()
+	}
+
+	if file, ok := commands[command]; ok {
+		f.soundQueue <- file
+		return
+	} else {
+		return fmt.Errorf("Command %v not available", command)
+	}
+	return
+}
+
+					</code>
+					</pre>
+					<aside class="notes">
+					FurbyDriver "knows" which files to play, and where those are...  It knows _someone's_ listening on a channel to do something with those.  
+
+					Intentionally didn't use events, because wanted to hide this detail away...  
+					Left it as ExecuteCommand(string), rather than explicit methods, to make it easier to put the command list tied to the filenames in an external file..  
+					</aside>
+				</section>
+
+				<section>
+				<h2>Show 'em what's broken!</h2>
+
+						Using 16x2 LCD, with RGB colors, show the build status...
+						
+						<table>
+						<tr>
+							<td valign="middle">Failing build</td> 
+							<td valign="middle"><img src="img/LEDFail.jpg" height="200px"/></td>
+						</tr>
+						<tr>
+							<td valign="middle">Successful build</td>
+							<td valign="middle"><img src="img/LEDSuccess.jpg" height="200px" /></td>
+						</tr>
+						</table>
+
+				</section>
+				<section>
+				<h2>Final furbyBot - Part 1</h2>
+
+				<pre>
+				<code>
+gbot := gobot.NewGobot()
+api.NewAPI(gbot).Start()
+
+r := raspi.NewRaspiAdaptor("raspi")
+audioAdaptor := audio.NewAudioAdaptor("sound")
+jenkinsAdaptor := jenkinsconnect.NewJenkinsconnectAdaptor("jenkins")
+
+// Set up asynchronous channel - if we get more than 3 sounds being played in a row, something's up
+csoundFiles := make(chan string, 3)
+furby := furby.NewFurbyDriver(r, "furby", "16", csoundFiles)
+audioDriver := audio.NewAudioDriver(audioAdaptor, "sounds", csoundFiles)
+jenkinsDriver := jenkinsconnect.NewJenkinsconnectDriver(jenkinsAdaptor, "jenkins-command")
+screen := i2c.NewGroveLcdDriver(r, "screen")
+
+				</code>
+				</pre>
+				</section>
+				<section>
+				<h2>Final furbyBot - Part 2</h2>
+				<pre>
+				<code>
+work := func() {
+	...
+	gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
+		jobResult := data.(jenkinsconnect.JobOutcome)
+		switch jobResult.State {
+		case jenkinsconnect.SUCCESS:
+			screen.Home()
+			screen.Clear()
+			screen.SetRGB(0, 255, 0)
+			screen.Write("Success:\n" + jobResult.Name)
+			furby.ExecuteCommand("burp")
+		case jenkinsconnect.FAILED:
+			screen.Home()
+			screen.Clear()
+			screen.SetRGB(255, 0, 0)
+			screen.Write(" FAIL:\n" + jobResult.Name)
+			furby.ExecuteCommand("fart")
+		default:
+				}
+	})
+}
+
+				</code>
+				</pre>
 				</section>
 
 				<section data-background="img/manyFurbies.jpg" data-state="dim">
@@ -419,10 +574,13 @@ j.AddCommand("ParseResults", func(params map[string]interface{})
 						<a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
 						<a href="mailto:tina@haydensoft.com">tina@haydensoft.com</a>
 				</p>
+				<p>
+				<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a></p>
 				
 				</section>
 			</div>
 
+			<small><a id="talk-tag" href="http://twitter.com/colemanserious">#furbyGobot</a> </small>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
