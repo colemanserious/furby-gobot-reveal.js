@@ -194,15 +194,13 @@
 
 				<section>
 					<h3>Playing a Sound</h3>
-					<pre>
+					<pre class="stretch">
 					<code data-trim >
 // PlayWav plays the filename provided.
 //  Potential errors include:
 //   - file not found
 //   - unable to play
-//
-// Note: Did see audio package in GoLang, however its part of gomobile
-//  Other alternatives exist - OpenAL, portaudio, ...  aplay seemed simplest
+// ..
 func PlayWav(fileName string) (err error) {
 
         if fileName == "" {
@@ -255,7 +253,7 @@ cobra add playSound
 
 
 Within cmd/playSound.go...
-					<pre>
+					<pre class="stretch">
 
 					<code>
 var playSoundCmd = &cobra.Command{
@@ -291,7 +289,7 @@ func init() {
 					<h3>Audio Driver / Adaptor</h3>
 					Receive requests to play quickly, but only play 1 at a time...<br/>
 					Don't block channel, though we might drop playing sounds
-					<pre>
+					<pre class="stretch">
 						<code>
 func (d *AudioDriver) Start() (err []error) {
         go d.serve(d.queue)
@@ -326,7 +324,7 @@ func (d *AudioDriver) serve(queue chan string) {
 				<section>
 					<h3>Basic Gobot - Light up LED + sound</h3>
 					See cmd/ledOn.go
-					<pre>
+					<pre class="stretch">
 					<code>
 gbot := gobot.NewGobot()
 
@@ -397,7 +395,7 @@ robot := gobot.NewRobot("furbyBot",
 				<section>
 				<h3>Integrating info from Jenkins into Gobot</h3>
 				Part I: Receive the info.
-				<pre>
+				<pre class="stretch">
 				<code>
 j.AddEvent(JobResult)
 
@@ -462,7 +460,7 @@ gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
 					<li>FurbyDriver modeled after gpio.LedDriver
 					<li>Adds ExecuteCommand()
 					</ul>
-					<pre>
+					<pre class="stretch">
 					<code>
 // Map command name to file name for command
 //  3 digits correspond to code from Hacksby library - see Command.pm
@@ -518,7 +516,7 @@ func (f *FurbyDriver) ExecuteCommand(command string) (err error) {
 				<section>
 				<h3>Final furbyBot - Part 1</h3>
 
-				<pre>
+				<pre class="stretch">
 				<code>
 gbot := gobot.NewGobot()
 api.NewAPI(gbot).Start()
@@ -527,11 +525,13 @@ r := raspi.NewRaspiAdaptor("raspi")
 audioAdaptor := audio.NewAudioAdaptor("sound")
 jenkinsAdaptor := jenkinsconnect.NewJenkinsconnectAdaptor("jenkins")
 
-// Set up asynchronous channel - if we get more than 3 sounds being played in a row, something's up
+// Set up asynchronous channel - if we get more than 3 sounds being played 
+//  in a row, something's up
 csoundFiles := make(chan string, 3)
 furby := furby.NewFurbyDriver(r, "furby", "16", csoundFiles)
 audioDriver := audio.NewAudioDriver(audioAdaptor, "sounds", csoundFiles)
-jenkinsDriver := jenkinsconnect.NewJenkinsconnectDriver(jenkinsAdaptor, "jenkins-command")
+jenkinsDriver := jenkinsconnect.NewJenkinsconnectDriver(jenkinsAdaptor, 
+	"jenkins-command")
 screen := i2c.NewGroveLcdDriver(r, "screen")
 
 				</code>
@@ -539,7 +539,7 @@ screen := i2c.NewGroveLcdDriver(r, "screen")
 				</section>
 				<section>
 				<h3>Final furbyBot - Part 2</h3>
-				<pre>
+				<pre class="stretch">
 				<code>
 work := func() {
 	...
