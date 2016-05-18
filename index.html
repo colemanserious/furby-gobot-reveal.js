@@ -73,7 +73,7 @@
 				</section>
 
 				<section>	
-				<h2>History of Furby</h2>
+				<h3>History of Furby</h3>
 				
 				<ol>
 					<li>1998: Furby enters the market
@@ -102,13 +102,13 @@
 				</section>
 
 				<section>
-					<h2>What.. ?  and WHY??</h2>
+					<h3>What.. ?  and WHY??</h3>
 					<p>
-					<span class="fragment">Furby for broken code...  <em> Why Not?</em></span>
+					Furby for broken code...  <em> Why Not?</em>
 					</p>
-					<p><span class="fragment">Raspberry Pi...  <em>Because I had one</em></span></p>
-					<span class="fragment"><p>Gobot...  <em>their logo's cool!</em></p><img src="img/gopher.png"></span>
-					<br><span class="fragment">OK, and so is Golang</span>
+					<p>Raspberry Pi...  <em>Because I had one</em></p>
+					Gobot...  <em>their logo's cool!</em></br><img src="img/gopher.png">
+					<br>OK, and so is Golang
 					
 						<aside class="notes">
 						Other build indicators: emails, slack messages, glowing spheres, Nerf guns...  	
@@ -120,25 +120,24 @@
 						</aside>
 				</section>
 				<section >
-					<h2>Labor of Love</h2>
+					<h3>Labor of Love</h3>
 					<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a>
-					<img src="img/9990571563_2d90ca7168_z.jpg" height="70%" />
+					<img src="img/9990571563_2d90ca7168_z.jpg" height="500px" />
 					
 					<aside class="notes">
 					Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/stevensnodgrass/9990571563">Stephen Snodgrass</a>
 				</section>
 
 				<section data-background="img/gophercolor.png"  data-state="dim shift-down" data-background-size="500px 500px" >
-					<h2>Go</h2>
+					<h3>Go</h3>
 					<ul>
-						<li>Smart coworker
-						<li>Docker 
 						<li>Build smaller modules 
 						<li>Fast compile + build time
 						<li>Functions as first-class citizens
 						<li>Concurrency handling
 						<li>Active community
 						<li>Built in tooling
+						<li>Docker 						
 					</ul>
 					
 					<p></p>
@@ -151,15 +150,15 @@
 				</section>
 
 				<section data-background="img/gobot-home.png" data-state="shift-down" data-background-size="300px 300px">
-					<h2>Gobot</h2>
+					<h3>Gobot</h3>
 					<ul>	
-						<li>Platforms:  Raspberry Pi, BeagleBone, Sphero, Arduino, ...
+						<li>Platforms:  Raspberry Pi, BeagleBone, Sphero, Arduino, OpenCV, LeapMotion, ARDrone, Pebble...
 						<li> Devices
 							<ul>
 								<li>GPIO
 								<li>I2C
 							</ul>
-						<li>Related projects:<br />
+						<li>Related projects in Ruby (Artoo) and Javascript (Cylon.js)<br />
 						<img src="img/artoo.png" /> &nbsp; &nbsp;
 						<img src="img/cylon.png" /> 
 					</ul>
@@ -173,9 +172,9 @@
 				</section>
 
 				<section>
-					<h2>How DO you control a Furby?</h2>
+					<h3>How DO you control a Furby?</h3>
 					<a href="http://dgst201.maryclark.us/hacking/silencing-furby/">Annotated Furby schematics</a>
-					<img src="img/_furby_alt_schematic.jpg" />
+					<img src="img/_furby_alt_schematic.jpg" height="500px" />
 					<aside class="notes">
 						* So, Furby's not listed in the set of things that Gobot (or Artoo or Cylon) command...  
 						* Instructables to take it apart
@@ -186,16 +185,17 @@
 				</section>
 
 				<section>
-					<h2>OR...</h2>
-					<img src="img/FurbyGobotPi.svg" height="80%" width="80%" />	
+					<h3>OR...</h3>
+					Control using sound
+					<img src="img/FurbyGobotPi.svg" height="500px"  />	
 					<aside class="notes">
 						github.com/iafan/Hacksby - perl project which documents / produces WAV files used to trigger furby
 				</section>
 
 				<section>
-					<h2>Playing a Sound</h2>
+					<h3>Playing a Sound</h3>
 					<pre>
-					<code data-trim>
+					<code data-trim >
 // PlayWav plays the filename provided.
 //  Potential errors include:
 //   - file not found
@@ -234,12 +234,12 @@ func PlayWav(fileName string) (err error) {
 				</section>
 
 				<section>
-					<h2>Trying it out - console app</h2>
+					<h3>Trying it out - console app</h3>
 					<a href="https://github.com/spf13/cobra">spf13/cobra</a> - "A Commander for Modern Go CLI interactions"
 
 					
 					<pre>
-					<code>
+					<code data-trim>
 cobra init
 cobra add playSound
 					</code>
@@ -251,7 +251,7 @@ cobra add playSound
 				</section>
 
 				<section>
-					<h2>playSound command</h2>
+					<h3>playSound command</h3>
 
 
 Within cmd/playSound.go...
@@ -288,7 +288,7 @@ func init() {
 				</section>
 
 				<section>
-					<h2>Audio Driver / Adaptor</h2>
+					<h3>Audio Driver / Adaptor</h3>
 					Receive requests to play quickly, but only play 1 at a time...<br/>
 					Don't block channel, though we might drop playing sounds
 					<pre>
@@ -315,7 +315,7 @@ func (d *AudioDriver) serve(queue chan string) {
 
 						</code>
 					</pre>
-					<aside>
+					<aside class="notes">
 						Audio is now being added to Gobot, based on work seen here.  This was modeled after the Audio Driver seen in Cylon.
 						"if Cylon.js is the future, than Gobot is the future's future" - Ron Evans, @deadprogram, developer at Hybrid Group, the primary maintainers of Gobot
 						There's now a feature/audio branch in Gobot, which provides support for mp3s, as well as WAV files
@@ -324,7 +324,7 @@ func (d *AudioDriver) serve(queue chan string) {
 
 
 				<section>
-					<h2>Basic Gobot - Light up LED + sound</h2>
+					<h3>Basic Gobot - Light up LED + sound</h3>
 					See cmd/ledOn.go
 					<pre>
 					<code>
@@ -359,7 +359,7 @@ robot := gobot.NewRobot("furbyBot",
 				</section>
 
 				<section>
-				<h2>Driving via the web</h2>
+				<h3>Driving via the web</h3>
 					<code>
 					api.NewAPI(gbot).Start()
 					</code>
@@ -371,10 +371,10 @@ robot := gobot.NewRobot("furbyBot",
 				</section>
 
 				<section>
-				<h2>Web driven</h2>
+				<h3>Web driven</h3>
 					<p>Use :3000/ to interact with your robot</p>
 
-					<img src="img/Robeaux.png" />
+					<img src="img/Robeaux.png" height="500px" />
 
 					<aside class="notes">
 						http://192.168.2.2:3000
@@ -382,7 +382,7 @@ robot := gobot.NewRobot("furbyBot",
 				</section>
 
 				<section>
-					<h2>How does Jenkins notify us?</h2>
+					<h3>How does Jenkins notify us?</h3>
 					<p>
 					Job Notification, sending through JSON to a URL
 					</p>
@@ -395,7 +395,7 @@ robot := gobot.NewRobot("furbyBot",
 				</section>
 
 				<section>
-				<h2>Integrating info from Jenkins into Gobot</h2>
+				<h3>Integrating info from Jenkins into Gobot</h3>
 				Part I: Receive the info.
 				<pre>
 				<code>
@@ -437,7 +437,7 @@ j.AddCommand("ParseResults", func(params map[string]interface{})
 				</section>
 
 				<section>
-				<h2>Integrating info from Jenkins into Gobot</h2>
+				<h3>Integrating info from Jenkins into Gobot</h3>
 				Part II: Do something with it...
 
 <pre>
@@ -457,7 +457,7 @@ gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
 				</section>
 
 				<section>
-					<h2>That furby.ExecuteCommand()</h2>
+					<h3>That furby.ExecuteCommand()</h3>
 					<ul>
 					<li>FurbyDriver modeled after gpio.LedDriver
 					<li>Adds ExecuteCommand()
@@ -499,7 +499,7 @@ func (f *FurbyDriver) ExecuteCommand(command string) (err error) {
 				</section>
 
 				<section>
-				<h2>Show 'em what's broken!</h2>
+				<h3>Show 'em what's broken!</h3>
 
 						Using 16x2 LCD, with RGB colors, show the build status...
 						
@@ -516,7 +516,7 @@ func (f *FurbyDriver) ExecuteCommand(command string) (err error) {
 
 				</section>
 				<section>
-				<h2>Final furbyBot - Part 1</h2>
+				<h3>Final furbyBot - Part 1</h3>
 
 				<pre>
 				<code>
@@ -538,7 +538,7 @@ screen := i2c.NewGroveLcdDriver(r, "screen")
 				</pre>
 				</section>
 				<section>
-				<h2>Final furbyBot - Part 2</h2>
+				<h3>Final furbyBot - Part 2</h3>
 				<pre>
 				<code>
 work := func() {
@@ -568,7 +568,7 @@ work := func() {
 				</section>
 
 				<section data-background="img/manyFurbies.jpg" data-state="dim">
-				<h2>Oh Developers...</h2>
+				<h1>Oh Developers...</h1>
 				
 				<p>
 						<a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
