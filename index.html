@@ -91,6 +91,14 @@
 						Image: <a href="https://creativecommons.org/licenses/by/2.0/">Some rights reserved</a> by <a href="https://www.flickr.com/photos/donhomer/">Michael Bentley</a>
 						</aside>
 				</section>
+				<section>
+				<h3>Ignoring build notifications</h3>
+
+					<img src="img/geek-and-poke-tests.jpg" height="550px" />
+				<aside class="notes">
+Image is work of Oliver Widder, oliver@geek-and-poke.com.  I first saw it in stackoverflow posting at http://stackoverflow.com/questions/4085419/am-i-allowed-to-check-in-a-failing-test from Nov 3, 2010
+				</aside>
+				</section>
 
 				<section data-background="img/8322201790_c303417e89_z.jpg">
 					<p>&nbsp;</p>
@@ -100,7 +108,7 @@
 
 				<h1>Feel my Furby wrath</h1>
 				</section>
-
+<!--
 				<section>
 					<h3>What.. ?  and WHY??</h3>
 					<p>
@@ -119,6 +127,7 @@
 						Gobot logo: http://gobot.io/images/elements/gopher.png
 						</aside>
 				</section>
+-->
 				<section >
 					<h3>Labor of Love</h3>
 					<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a>
@@ -133,7 +142,6 @@
 					<ul>
 						<li>Build smaller modules 
 						<li>Fast compile + build time
-						<li>Functions as first-class citizens
 						<li>Concurrency handling
 						<li>Active community
 						<li>Built in tooling
@@ -155,12 +163,13 @@
 						<li>Platforms:  Raspberry Pi, BeagleBone, Sphero, Arduino, OpenCV, LeapMotion, ARDrone, Pebble...
 						<li> Devices
 							<ul>
-								<li>GPIO
-								<li>I2C
+								<li>GPIO (General Purpose Input/Output)
+								<li>I<sup>2</sup>C (Inter-Integrated Circuit)
 							</ul>
 						<li>Related projects in Ruby (Artoo) and Javascript (Cylon.js)<br />
 						<img src="img/artoo.png" /> &nbsp; &nbsp;
 						<img src="img/cylon.png" /> 
+						<li>Model: Connections, devices, work
 					</ul>
 					<aside class="notes">
 					- All use same adaptor / driver pattern
@@ -197,10 +206,9 @@
 					<pre class="stretch">
 					<code data-trim >
 // PlayWav plays the filename provided.
-//  Potential errors include:
-//   - file not found
-//   - unable to play
 // ..
+// Note: Did see audio package in golang, however its part of gomobile
+//  Other alternatives exist - OpenAL, portaudio, ...  aplay seemed simplest
 func PlayWav(fileName string) (err error) {
 
         if fileName == "" {
@@ -233,12 +241,15 @@ func PlayWav(fileName string) (err error) {
 
 				<section>
 					<h3>Trying it out - console app</h3>
+					<a href="https://github.com/avelino/awesome-go">Awesome Go</a>: 'A curated list of awesome Go frameworks, libraries and software'
+					<hr/>
+
 					<a href="https://github.com/spf13/cobra">spf13/cobra</a> - "A Commander for Modern Go CLI interactions"
 
 					
 					<pre>
 					<code data-trim>
-cobra init
+cobra init 
 cobra add playSound
 					</code>
 					</pre>
@@ -291,6 +302,9 @@ func init() {
 					Don't block channel, though we might drop playing sounds
 					<pre class="stretch">
 						<code>
+// Use semaphore to control how many sounds might be playing at a time
+var sem = make(chan int, 1)
+
 func (d *AudioDriver) Start() (err []error) {
         go d.serve(d.queue)
         return
@@ -441,13 +455,15 @@ j.AddCommand("ParseResults", func(params map[string]interface{})
 <pre>
 <code>
 gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
-	jobResult := data.(jenkinsconnect.JobOutcome)
-	switch jobResult.State {
-	case jenkinsconnect.SUCCESS:
-		furby.ExecuteCommand("burp")
-	case jenkinsconnect.FAILED:
-		furby.ExecuteCommand("fart")
-	default:
+	jobResult, ok := data.(jenkinsconnect.JobOutcome)
+	if ok {
+		switch jobResult.State {
+		case jenkinsconnect.SUCCESS:
+			furby.ExecuteCommand("burp")
+		case jenkinsconnect.FAILED:
+			furby.ExecuteCommand("fart")
+		default:
+		}
 	}
 })
 </code>
@@ -544,22 +560,24 @@ screen := i2c.NewGroveLcdDriver(r, "screen")
 work := func() {
 	...
 	gobot.On(jenkinsDriver.Event("jobResult"), func(data interface{}) {
-		jobResult := data.(jenkinsconnect.JobOutcome)
-		switch jobResult.State {
-		case jenkinsconnect.SUCCESS:
-			screen.Home()
-			screen.Clear()
-			screen.SetRGB(0, 255, 0)
-			screen.Write("Success:\n" + jobResult.Name)
-			furby.ExecuteCommand("burp")
-		case jenkinsconnect.FAILED:
-			screen.Home()
-			screen.Clear()
-			screen.SetRGB(255, 0, 0)
-			screen.Write(" FAIL:\n" + jobResult.Name)
-			furby.ExecuteCommand("fart")
-		default:
-				}
+		jobResult, ok := data.(jenkinsconnect.JobOutcome)
+		if ok {
+			switch jobResult.State {
+			case jenkinsconnect.SUCCESS:
+				screen.Home()
+				screen.Clear()
+				screen.SetRGB(0, 255, 0)
+				screen.Write("Success:\n" + jobResult.Name)
+				furby.ExecuteCommand("burp")
+			case jenkinsconnect.FAILED:
+				screen.Home()
+				screen.Clear()
+				screen.SetRGB(255, 0, 0)
+				screen.Write(" FAIL:\n" + jobResult.Name)
+				furby.ExecuteCommand("fart")
+			default:
+			}
+		}
 	})
 }
 
@@ -567,17 +585,29 @@ work := func() {
 				</pre>
 				</section>
 
-				<section data-background="img/manyFurbies.jpg" data-state="dim">
-				<h1>Oh Developers...</h1>
-				
-				<p>
-						<a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
-						<a href="mailto:tina@haydensoft.com">tina@haydensoft.com</a>
-				</p>
-				<p>
-				<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a></p>
-				
+				<section>
+					<section data-background="img/manyFurbies.jpg" data-state="dim">
+					<h1>Oh Developers...</h1>
+					
+					<p>
+							<a href="http://www.nerderypublic.com">Tina Coleman</a> | <a href="http://twitter.com/colemanserious">@colemanserious</a> |
+							<a href="mailto:tina@haydensoft.com">tina@haydensoft.com</a>
+					</p>
+					<p>
+					<a href="http://github.com/colemanserious/furby-gobot">http://github.com/colemanserious/furby-gobot</a></p>
+
+					
+					</section>
+						<section>
+						<h3>Resources</h3>
+						<ul>
+							<li><a href="https://golang.org/doc/effective_go.html">Effective Go</a>
+							<li><a href="https://gobot.io/">Gobot.io</a>
+							<li><a href="http://awesome-go.com/">http://awesome-go.com</a>: a curated list of Go frameworks, libraries, and software
+						</ul>
+						</section>
 				</section>
+
 			</div>
 
 			<small><a id="talk-tag" href="http://twitter.com/colemanserious">#furbyGobot</a> </small>
